@@ -1,0 +1,223 @@
+/* --- VARIABLES (PURPLE THEME) --- */
+:root {
+  --primary: #6A0DAD;/* Purple */
+  --accent: #C084FC; /* Light purple accent */
+  --background: #FFFFFF;
+  --text: #2B2B2B;
+  --card-bg: #F5F0FA; /* Soft lavender */
+}
+
+/* --- RESET & BASE --- */
+* { box-sizing: border-box; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
+
+body { background: var(--background); color: var(--text); line-height: 1.6; }
+
+/* --- HEADER --- */
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 18px 20px;
+  border-bottom: 3px solid var(--primary);
+  position: sticky; top:0; background:white; z-index:10;
+}
+
+.header-left h1 {
+  color: var(--primary);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header-left .tagline {
+  font-size: 14px;
+  color:#6B6B6B;
+}
+
+.header-right img {
+  width:45px;
+  height:auto;
+  border-radius:6px;
+}
+
+/* --- CATEGORIES --- */
+.categories {
+  display:flex;
+  flex-wrap: wrap;
+  gap:10px;
+  padding:12px 20px;
+  justify-content:center;
+  background:#F5EBFF;
+}
+
+.cat-btn {
+  padding:10px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  background:#E9D5FF;
+  color: var(--primary);
+  font-weight:600;
+  transition:0.3s;
+}
+
+.cat-btn.active,
+.cat-btn:hover {
+  background: var(--primary);
+  color:white;
+  transform: scale(1.05);
+}
+
+/* --- SEARCH BAR --- */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+}
+
+.search-bar input {
+  width: 250px;
+  max-width: 90%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-bar button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- GRID (FIXED 4 CARDS PER ROW, NO GREY SPACE) --- */
+#results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  display:flex;
+  flex-direction:column;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.thumb {
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+.favorite.liked {
+  background: #FF4C4C; /* Red for liked */
+  color: white;
+}
+
+
+.card-body {
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.card-body h3 {
+  font-size:16px;
+  color: var(--primary);
+  font-weight:600;
+}
+
+.card-actions {
+  display:flex;
+  justify-content: space-between;
+  margin-top:auto;
+  gap:6px;
+}
+
+.btn {
+  padding:8px 10px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn.view {
+  background: var(--primary);
+  color:white;
+}
+
+.btn.favorite {
+  background: var(--accent);
+  color:white;
+}
+
+/* --- RESPONSIVE GRID --- */
+@media (max-width:1024px) {
+  #results { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width:768px) {
+  #results { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width:480px) {
+  #results { grid-template-columns: 1fr; }
+  .thumb { height:130px; }
+  .search-bar input { width:140px; }
+  .header-left h1 { font-size:20px; }
+}
+
+/* --- LOADER & MESSAGE --- */
+#loader, .message {
+  text-align:center;
+  padding:12px;
+  font-weight:600;
+}
+
+.hidden { display:none; }
+
+/* --- MODAL --- */
+.modal {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.65);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index: 100;
+}
+
+.modal.hidden { display:none; }
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh; /* Maximum height = 80% of viewport */
+  overflow-y: auto; /* Scroll if content exceeds height */
+  position: relative;
+}
+
+
+.close-btn {
+  position:absolute; top:10px; right:15px;
+  font-size:22px; cursor:pointer;
+}
